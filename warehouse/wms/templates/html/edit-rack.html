@@ -1,0 +1,81 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+          $.getJSON('http://127.0.0.1:8000/wms/view-building', function(json) {
+            for (var i = 0; i < json['name'].length; i++) {
+              $('#select_building').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+            }
+            //alert(json['success']);
+          });
+          $('#select_building').on('change', function() {
+            var val = $('#select_building').val();
+            //alert(val);
+            $.getJSON('http://127.0.0.1:8000/wms/view-rack-action?id=' + val, function(json) {
+              //$('#rack-view').html('<div class="selection"><select id="select_rack"><option value="">Select rack</option></select></div>')
+              //alert("hello")
+              $('#select_rack').html('<option value="">Select rack</option>')
+              for (var i = 0; i < json['rack_id'].length; i++) {
+              //  alert(json['name'][i])
+                $('#select_rack').append('<option value='+ json['rack_id'][i] + '>'+ json['name'][i] +'</option>')
+              }
+
+            });
+          });
+
+          $('#select_rack').on('change', function() {
+            var val = $('#select_rack').val();
+            //alert(val)
+            //alert(val);
+            $.getJSON('http://127.0.0.1:8000/wms/edit-rack-action?id=' + val, function(json) {
+              //alert("hello")
+              $('#view_rack').html(
+                '<div id="view_rack"><div class="center"><div class="header">EDIT Rack</div><form method="get" action="edit-rack-action-save"><input type="hidden" id="id" name="id" value="'+  json['rack_id'] +'"><input type="text" name="rack_name" id="rack_name" placeholder="Rack name = '+  json['name'] +'"><input type="number" name="weight" id="weight" placeholder="weight capacity = '+  json['weight'] +'"><input type="number"name="nof_bin" id="nof_bin" placeholder="Number of bins = '+  json['nof_bin'] +'"><input type="number" name="width" id="width" placeholder="width = '+  json['width'] +'"><input type="number" name="height" id="height" placeholder="Height = '+  json['height'] +'"><input type="number" name="length" id="length" placeholder="Length = '+  json['length'] +'"><input type="submit" id="submit" value="Submit"></form></div></div>'
+              )
+            });
+          });
+        });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div class="selection">
+    <select id="select_building">
+      <option value="">Select building</option>
+    </select>
+  </div>
+  <div class="selection">
+    <select id="select_rack">
+      <option value="">Select rack</option>
+    </select>
+  </div>
+  <div id="view_rack">
+    <span > {{ success }}</span>
+    <!-- <div class="center">
+      <div class="header">
+         Edit Rack
+      </div>
+      <form method="get" action="add-building-action">
+        <input type="hidden" name="" value="">
+         <input type="text" name="name" id="name" placeholder="Building name">
+         <input type="number" name="area" id="area" placeholder="Area">
+         <input type="number"name="floor" id="floor" placeholder="Floor">
+         <input type="text" name="identifier" id="identifier" placeholder="Identifier">
+         <input type="number" name="height" id="height" placeholder="Height">
+         <input type="text" name="structure" id="structure" placeholder="Structure">
+         <input type="text" name="flooring" id="flooring" placeholder="Flooring">
+         <input type="submit" id="submit" value="Submit">
+      </form> -->
+   </div>
+
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

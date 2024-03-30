@@ -1,0 +1,70 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#search').on('click', function() {
+        var ssn = $('#ssn').val();
+        //alert(ssn)
+        $.getJSON('http://127.0.0.1:8000/wms/supervisor-view-employee-action?ssn=' + ssn, function(json) {
+        //  alert(json['name'])
+           $('#view-employee').html('<div id="card"><h1>' + json['name'] +'</h1><div id="bio"><table><tr><td><label>Phone </label></td><td>:</td><td>' + json['phone'] +'</td></tr><tr><td><label>Address </label></td><td>:</td><td>' + json['address'] +'</td></tr><tr>  <td><label>SSN </label></td>  <td>:</td>  <td>' + json['ssn'] +'</td></tr><tr><td><label>TIN</label></td><td>:</td><td>' + json['tin'] +'</td></tr><tr><td><label>Employee-Type</label></td><td>:</td><td>' + json['employee-type'] +'</td></tr></table></div></div>')
+          // for (var i = 0; i < json['name'].length; i++) {
+          //   //alert(json['name'][i])
+          //   $('#view-employee').html('<div id="card"><h1>' + json['name'][i] +'</h1><div id="bio"><table><tr><td><label>Phone </label></td><td>:</td><td>' + json['phone'][i] +'</td></tr><tr><td><label>Address </label></td><td>:</td><td>' + json['address'][i] +'</td></tr><tr>  <td><label>SSN </label></td>  <td>:</td>  <td>' + json['ssn'][i] +'</td></tr><tr><td><label>TIN</label></td><td>:</td><td>' + json['tin'][i] +'</td></tr><tr><td><label>Employee-Type</label></td><td>:</td><td>' + json['employee-type'][i] +'</td></tr></table></div></div>')
+          // }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div class="select">
+    <input type="text" name="" value="" class="" id="ssn" placeholder="Enter SSN">
+    <button type="button" id="search" name="button">Search</button>
+    <!-- <a href="#">View More</a> -->
+  </div>
+  <span class="arrow-highlight">{{ success }}</span>
+  <!-- <table class="content-table">
+    <thead>
+      <tr>
+        <th>Sl.No</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>SSN</th>
+        <th>TIN</th>
+        <th>Employee Type</th>
+      </tr>
+    </thead>
+
+
+    <tr>
+      <td>1</td>
+      <td>John</td>
+      <td>+21 23236237</td>
+      <td>Street 234</td>
+      <td>087466</td>
+      <td>12345</td>
+      <td>Permanent</td>
+    </tr>
+  </table> -->
+
+
+  <div class="profile" id="view-employee">
+
+
+  </div>
+  <!-- <a href="" class="delete">Remove</a> -->
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

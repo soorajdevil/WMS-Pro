@@ -1,0 +1,54 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/view-building', function(json) {
+        for (var i = 0; i < json['name'].length; i++) {
+          $('#select_building').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+        }
+        //alert(json['success']);
+      });
+      $('#select_building').on('change', function() {
+        var val = $('#select_building').val();
+        $.getJSON('http://127.0.0.1:8000/wms/view-rack-action?id=' + val , function(json) {
+          //alert(json['success']);
+          $('#rack_view').html('<table class="content-table"><thead><tr><th>Sl.No</th><th>Name</th><th>Weight</th><th>Nof.bins</th><th>Width</th><th>Height</th><th>Length</th><th><button class="btn" type="button" name="button">Free</button></th></thead></tr>');
+          for (var i = 0; i < json['name'].length; ++i) {
+            //  alert(json['name'][i]);
+
+            $('#rack_view').append('<tbody><tr><td>' + (i + 1) + '</td><td>' + json['name'][i] + '</td><td>' + json['weight'][i] + '</td><td>' + json['nof_bin'][i] + '</td><td>' + json['width'][i] + '</td><td>' + json['height'][i] +
+              '</td><td>' + json[
+                'length'][i] + '</td><td><input type="checkbox" name="" value=""></td></tr></tbody>')
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div class="selection">
+    <select id="select_building">
+      <option value="">Select building</option>
+    </select>
+  </div>
+  <table id="rack_view" class="content-table">
+    <!-- <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+         <th>Address</th>
+         <th>Password</th>
+       </tr> -->
+  </table>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

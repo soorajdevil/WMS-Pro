@@ -1,0 +1,46 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+        //alert(json['success']);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div>
+
+    <div class="center">
+
+      <div class="header">
+        ADD Attendence
+      </div>
+
+<span class="span-error-message">{{ error }}</span>
+      <!-- <span class="span-success-messages">{{ success }}</span> -->
+      <form method="get" action="">
+
+        <span  class="span-label-message">Name</span><input type="text" name="name" id="name" placeholder="name">
+        <span  class="span-label-message">SSN</span><input type="number" name="" value=""placeholder="Employee SSN">
+        <span  class="span-label-message">Time-in</span><input type="time" name="" value=""placeholder="time-in">
+      <span  class="span-label-message">Time-out</span><input type="time" name="" value=""placeholder="time-out">
+        <span  class="span-label-message">Note</span><input type="text" name="" value="" placeholder="Note">
+        <input type="submit" id="submit" value="Submit">
+
+
+      </form>
+    </div>
+  </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

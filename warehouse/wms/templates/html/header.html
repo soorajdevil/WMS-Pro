@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#logout').click(function() {
+
+      });
+
+    });
+  </script>
+</head>
+
+<body id="bg">
+  <div class="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <img class="logo-image" id="" src="{% static 'image/logo-header1.png' %}">
+        <div class="logo"><a href="home">&nbspWMS</a></div>
+        <ul class="links">
+          <li><a href="home">Home</a></li>
+          <li><a href="#">Warehouse</a>
+          <ul>
+          <li>
+            <a href="#" class="desktop-link">Building</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Building</label>
+            <ul>
+              <li><a href="add-building"><pre>   Add  </pre></a></li>
+              <li><a href="view-all-buildings"><pre>   View  </pre></a></li>
+              <li><a href="edit-building"><pre>   Edit  </pre></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Rack</a>
+            <input type="checkbox" id="show-services">
+            <label for="show-services">Rack</label>
+            <ul>
+              <li><a href="add-rack"><pre>   Add  </pre></a></li>
+              <li><a href="view-rack"><pre>   View  </pre></a></li>
+              <li><a href="edit-rack"><pre>   Edit  </pre></a></li>
+            </ul>
+          <li>
+            <a href="#" class="desktop-link">Row</a>
+            <input type="checkbox" id="show-items">
+            <label for="show-features">Row</label>
+            <ul>
+              <li><a href="add-row"><pre>   Add  </pre></a></li>
+              <li><a href="#"><pre>   View  </pre></a></li>
+              <li><a href="#"><pre>   Edit  </pre></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Bin</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Bin</label>
+            <ul>
+              <li><a href="view-bin">View Bin</a></li>
+            </ul>
+          </li>
+          <li><a href="view-product">product</a></li>
+        </ul>
+      </li>
+          <li>
+            <a href="#" class="desktop-link">Supervisor</a>
+            <input type="checkbox" id="show-items">
+            <label for="show-items">Supervisor</label>
+            <ul>
+              <li><a href="add-supervisor">Add supervisor</a></li>
+              <li><a href="view-supervisor">View supervisor</a></li>
+              <li><a href="#">Edit supervisor</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Employee</a>
+          <ul>
+            <li><a href="add-employee">Add Employee</a></li>
+            <li><a href="view-employee">View Employee</a></li>
+          </ul>
+          </li>
+          <li><a href="#">Resource</a>
+          <ul>
+            <li><a href="job-sheduling">Job Sheduling</a></li>
+          </ul>
+          </li>
+
+        </ul>
+      </div>
+      <a href="warehouse-logout-action"><img class="logo" title="logout" src="{% static 'image/logout.png' %}" alt=""></a>  </nav>
+      <!-- <button type="submit" id="logout" class="logout"> LogOut</button> -->
+    </nav>
+  </div>
+
+  </nav>
+  </div>

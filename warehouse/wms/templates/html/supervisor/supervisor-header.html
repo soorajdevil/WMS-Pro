@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#logout').click(function() {
+
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <img class="logo-image" id="" src="{% static 'image/logo-header1.png' %}">
+        <div class="logo"><a href="supervisor-home">&nbspWMS</a></div>
+        <ul class="links">
+          <li><a href="supervisor-home">Home</a></li>
+          <li>
+            <a href="#" class="desktop-link">Product</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Product Management</label>
+            <ul>
+              <li><a href="">Product</a>
+                <ul>
+                  <li><a href="supervisor-add-product">&nbsp;&nbsp;&nbsp; Add &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="supervisor-view-product">&nbsp;&nbsp;&nbsp; View &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <!-- <li><a href="supervisor-edit-product">&nbsp;&nbsp;&nbsp; Edit &nbsp;&nbsp;&nbsp;&nbsp;</a></li> -->
+                </ul>
+              </li>
+              <li><a href="">Box</a>
+                <ul>
+                  <li><a href="supervisor-add-box">Add Box</a></li>
+                  <li><a href="supervisor-view-box">View Box</a></li>
+                  <li><a href="">Edit Box</a></li>
+                  <li><a href="supervisor-free-space">Free space</a></li>
+                </ul>
+              </li>
+              <li><a href="supervisor-box-transit">Box transit</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Employee</a>
+            <ul>
+              <li><a href="supervisor-add-employee-attendence">Attendence</a></li>
+              <li><a href="supervisor-view-employee-attendence">View attendence</a></li>
+              <li><a href="supervisor-view-employee">Details</a></li>
+            </ul>
+
+          </li>
+          <li><a href="#">Report</a>
+            <ul>
+              <li><a href="supervisor-view-rack-report">View Rack</a></li>
+            </ul>
+
+          </li>
+        </ul>
+      </div>
+      <a href="supervisor-warehouse-logout-action"><img class="logo" title="logout" src="{% static 'image/logout.png' %}" alt=""></a>  </nav>
+      <!-- <button type="submit" id="logout" class="logout"> LogOut</button> -->
+    </nav>
+  </div>
+
+  </nav>
+  </div>

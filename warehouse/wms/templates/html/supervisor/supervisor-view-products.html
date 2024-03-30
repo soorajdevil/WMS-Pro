@@ -1,0 +1,51 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/supervisor-view-product-action', function(json) {
+        //alert(json['success']);
+        // $('#view_name').html('<span class="span-success-message">Welcome ' + json['supervisor'] +'</span>')
+        $('#product_view').html('<table class="content-table"><thead><tr><th>Sl.No</th><th>Name</th><th>Brand</th><th>Model</th><th>Quantity</th><th>Weight</th><th>Length</th><th>Width</th><th>Height</th><th>&nbsp&nbsp&nbsp&nbsp&nbspRemove</th><th>&nbsp&nbsp&nbsp&nbsp&nbspEdit</th></thead></tr>');
+        for (var i = 0; i < json['name'].length; ++i) {
+          //  alert(json['name'][i]);
+
+          $('#product_view').append('<tbody><tr><td>' + (i+1) + '</td><td>' + json['name'][i] + '</td><td>' + json['brand'][i] + '</td><td>' + json['model'][i] + '</td><td>' + json['quantity'][i] + '</td><td>' + json['weight'][i] + '</td><td>' + json['length'][i] + '</td><td>' + json['width'][i] + '</td><td>' + json['height'][i] + '</td><td><a href="supervisor-delete-product?id=' + json['id'][i] + '" class="delete" id="remove"">Remove</a></td><td><a href="supervisor-edit-product-action?product_id=' + json['id'][i] + '" class="edit" id="edit">EDIT</a></td></tr></tbody>')
+        }
+        $('#remove').on('click',function() {
+          alert('Product deletion success');
+        });
+
+      });
+
+    });
+  </script>
+</head>
+<body>
+
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+<div class="" id="view_name">
+
+</div>
+
+<span class="arrow-highlight">{{ success }}</span>
+    <table id="product_view" class="content-table">
+      <!-- <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+         <th>Address</th>
+         <th>Password</th>
+       </tr> -->
+    </table>
+
+    <!-- <a href="" class="delete">Remove</a> -->
+    <!-- Footer -->
+    {% include "html/footer.html" %}
+    <!-- End of footer -->
+</body>

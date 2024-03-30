@@ -1,0 +1,87 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+        //alert(json['success']);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div class="span-align">
+    <div class="center">
+      <div class="header">
+        Search Free Space
+      </div>
+      <form method="get" action="">
+<select class="" name="">
+<option value="">select building</option>
+<option value="">Building 1</option>
+<option value="">Builidng 2</option>
+</select>
+        <!-- <span  class="span-label-message">Building Name</span><input type="text" name="name" id="name" placeholder="name"> -->
+
+        <input type="submit" id="submit" value="Search">
+
+      </form>
+    </div>
+
+
+  <!--
+  <div class="select">
+  <input type="text" name="" value="" class="" placeholder="Enter employee name">
+  <input type="month" name="" value="">
+  <input type="month" name="" value="">
+  <button type="button" name="button">Search</button>
+
+  </div> -->
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Sl.No</th>
+        <th>Building</th>
+        <th>Rack</th>
+        <th>Bin</th>
+        <th>Available </th>
+        <th>Percentage</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+
+    <tr>
+      <td>1</td>
+      <td>Building 1</td>
+      <td>Rack 2</td>
+      <td>Bin 3</td>
+      <td>2400</td>
+     <td><input type="range" name="" value=""> </td>
+      <td><a href="" class="edit" id="edit">choose</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Building 1</td>
+      <td>Rack 3</td>
+      <td>Bin 1</td>
+      <td>300</td>
+     <td><input type="range" name="" value=""> </td>
+      <td><a href="" class="edit" id="edit">choose</a></td>
+    </tr>
+
+  </table>
+  </div>
+
+
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

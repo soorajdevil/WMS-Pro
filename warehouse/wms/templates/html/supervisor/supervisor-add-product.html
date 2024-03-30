@@ -1,0 +1,51 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+        //alert(json['success']);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div>
+
+    <div class="center">
+
+      <div class="header">
+
+        ADD Product
+      </div>
+
+      <span class="span-error-message">{{ error }}</span>
+      <span class="span-success-messages">{{ success }}</span>
+      <form method="get" action="supervisor-add-product-action">
+
+        <input type="text" name="name" id="name" placeholder="Product name">
+        <input type="text" name="brand" id="brand" placeholder="Brand">
+        <input type="text" name="model" id="model" placeholder="Model">
+        <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+        <input type="number" name="weight" id="weight" placeholder="weight">
+        <input type="number" name="length" id="length" placeholder="Length">
+        <input type="number" name="width" id="width" placeholder="Width">
+        <input type="number" name="height" id="height" placeholder="Height">
+
+        <input type="submit" id="submit" value="Submit">
+
+
+      </form>
+    </div>
+  </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

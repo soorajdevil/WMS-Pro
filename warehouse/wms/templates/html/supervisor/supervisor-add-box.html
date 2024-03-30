@@ -1,0 +1,65 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+        //alert(json['success']);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div class="span-align">
+
+
+  <div class="select-box">
+<select class="" name="view_building">
+  <option value="">select building</option>
+  <option value="">Building 1</option>
+  <option value="">Building 2</option>
+</select>
+<select class="" name="view_rack">
+  <option value="">select rack</option>
+  <option value="">Rack 1</option>
+  <<option value="">Rack 2</option>
+</select>
+<select class="" name="view_bin">
+  <option value="">select bin</option>
+  <option value="">Bin 1</option>
+  <<option value="">Bin 2</option>
+</select>
+<select class="" name="view_product">
+  <option value="">select product</option>
+  <option value="">Product 1</option>
+  <<option value="">Product 2</option>
+</select>
+</div>
+    <div class="center">
+      <div class="header">
+        ADD Box
+      </div>
+      <span class="span-error-message">{{ error }}</span>
+      <span class="span-success-messages">{{ success }}</span>
+      <form method="get" action="supervisor-add-box-action">
+
+        <input type="text" name="note" id="note" placeholder="Note">
+        <!-- <input type="date" name="date" id="date" placeholder="Date">
+        <input type="time" name="time" id="time" placeholder="Time"> -->
+        <input type="submit" id="submit" value="Submit">
+
+
+      </form>
+    </div>
+      </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

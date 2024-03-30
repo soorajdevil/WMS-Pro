@@ -1,0 +1,59 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+          $.getJSON('http://127.0.0.1:8000/wms/view-building', function(json) {
+            for (var i = 0; i < json['name'].length; i++) {
+              $('#select_building').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+            }
+            //alert(json['success']);
+          });
+          $('#select_building').on('change', function() {
+            var val = $('#select_building').val();
+            //alert(val);
+            $.getJSON('http://127.0.0.1:8000/wms/edit-building-action?id=' + val, function(json, ) {
+              //alert("hello")
+              $('#view_building').html(
+                '<div class="center"><div class="header">Edit Building</div><form method="get" action="http://127.0.0.1:8000/wms/edit-building-action-save"><input type="hidden" id="id" name="id" value="'+  json['id'] +'"><input type="text" name="name" id="name" placeholder="Name = '+  json['name'] +'"><input type="number" name="area" id="area" placeholder="Area = '+ json['area'] +'"><input type="number"name="floor" id="floor" placeholder="Floor = '+  json['floor'] +'"> <input type="text" name="identifier" id="identifier" placeholder="Identifier = '+  json['identifier'] +'"><input type="number" name="height" id="height" placeholder="Height = '+  json['height'] +'"><input type="text" name="structure" id="structure" placeholder="Structure = '+  json['structure'] +'"><input type="text" name="flooring" id="flooring" placeholder="Flooring = '+  json['flooring'] +'"><input type="submit" id="submit" value="Submit"></form></div>'
+                )
+            });
+          });
+        });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div class="selection">
+    <select id="select_building">
+      <option value="">Select building</option>
+    </select>
+  </div>
+  <div id="view_building">
+    <!-- <div class="center">
+      <div class="header">
+         Add Building
+      </div>
+      <form method="get" action="add-building-action">
+        <input type="hidden" name="" value="">
+         <input type="text" name="name" id="name" placeholder="Building name">
+         <input type="number" name="area" id="area" placeholder="Area">
+         <input type="number"name="floor" id="floor" placeholder="Floor">
+         <input type="text" name="identifier" id="identifier" placeholder="Identifier">
+         <input type="number" name="height" id="height" placeholder="Height">
+         <input type="text" name="structure" id="structure" placeholder="Structure">
+         <input type="text" name="flooring" id="flooring" placeholder="Flooring">
+         <input type="submit" id="submit" value="Submit">
+      </form> -->
+   </div> 
+
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

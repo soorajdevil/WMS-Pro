@@ -1,0 +1,55 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    // $(document).ready(function() {
+    //       $.getJSON('http://127.0.0.1:8000/wms/supervisor-view-product-action', function(json) {
+    //         for (var i = 0; i < json['name'].length; i++) {
+    //           $('#select_product').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+    //         }
+    //         //alert(json['success']);
+    //       });
+    //       $('#select_product').on('change', function() {
+    //         var val = $('#select_product').val();
+    //         //alert(val);
+    //         $.getJSON('http://127.0.0.1:8000/wms/supervisor-edit-product?id=' + val, function(json, ) {
+    //           //alert("hello")
+    //           $('#view_product').html(
+    //             '<div class="center"><div class="header">Edit Product</div><form method="get" action="http://127.0.0.1:8000/wms/supervisor-edit-product-action-save"><input type="hidden" id="id" name="id" value="'+  json['id'] +'"><input type="text" name="name" id="name" placeholder="Name = '+  json['name'] +'"><input type="number" name="area" id="area" placeholder="Area = '+ json['area'] +'"><input type="number"name="floor" id="floor" placeholder="Floor = '+  json['floor'] +'"> <input type="text" name="identifier" id="identifier" placeholder="Identifier = '+  json['identifier'] +'"><input type="number" name="height" id="height" placeholder="Height = '+  json['height'] +'"><input type="text" name="structure" id="structure" placeholder="Structure = '+  json['structure'] +'"><input type="text" name="flooring" id="flooring" placeholder="Flooring = '+  json['flooring'] +'"><input type="submit" id="submit" value="Submit"></form></div>'
+    //             )
+    //         });
+    //       });
+    //     });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div>
+    <div class="center">
+      <div class="header">
+        Edit bin  {{ name }}
+      </div>
+      <span class="span-error-message">{{ error }}</span>
+      <form method="post" action="edit-bin-action-save">
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="number" name="weight" id="weight" placeholder="Weight = {{ weight }}">
+        <input type="number" name="length" id="length" placeholder="Length = {{ length }}">
+        <input type="number" name="width" id="width" placeholder="Width = {{ width }}">
+        <input type="number" name="height" id="height" placeholder="Height = {{ height }}">
+        <input type="submit" id="submit" value="Submit">
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

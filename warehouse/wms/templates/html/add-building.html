@@ -1,0 +1,41 @@
+{% load static %}
+<head>
+    <!-- <link rel="stylesheet" href="add-building.css"> -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+      <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+      <script>
+        $(document).ready(function() {
+            $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+              //alert(json['success']);
+            });
+        });
+      </script>
+</head>
+<body>
+    <!--start of header-->
+    {% include "html/header.html" %}
+     <!--End of header-->
+     <div>
+     <div class="center">
+      <div class="header">
+         ADD Building
+      </div>
+      <form method="get" action="add-building-action">
+        <span>{{ success }}</span>
+
+         <input type="text" name="name" id="name" placeholder="Building name">
+         <input type="number" name="area" id="area" placeholder="Area">
+         <input type="number"name="floor" id="floor" placeholder="Floor">
+         <input type="text" name="identifier" id="identifier" placeholder="Identifier">
+         <input type="number" name="height" id="height" placeholder="Height">
+         <input type="text" name="structure" id="structure" placeholder="Structure">
+         <input type="text" name="flooring" id="flooring" placeholder="Flooring">
+         <input type="submit" id="submit" value="Submit">
+
+      </form>
+   </div>
+  </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+    </body>

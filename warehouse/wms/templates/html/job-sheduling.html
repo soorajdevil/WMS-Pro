@@ -1,0 +1,55 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+        //alert(json['success']);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Sl.No</th>
+        <th>Time</th>
+        <th>Resource Needed</th>
+        <th>Permanent Employee</th>
+        <th>Temporary Employees</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+
+    <tr>
+      <td>1</td>
+      <td>02:00 AM to 05:00 AM</td>
+      <td>20</td>
+      <td><input type="number" name="" value="" placeholder="0"></td>
+      <td><input type="number" name="" value="" placeholder="0"></td>
+      <td><a href="" class="edit" id="add">Add</a></td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>05:00 AM to 06:00 AM</td>
+      <td>8</td>
+      <td><input type="number" name="" value="" placeholder="0"></td>
+      <td><input type="number" name="" value="" placeholder="0"></td>
+      <td><a href="" class="edit" id="add">Add</a></td>
+    </tr>
+  </table>
+
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

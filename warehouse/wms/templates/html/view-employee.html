@@ -1,0 +1,46 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+    //  alert("hello")
+      $.getJSON('http://127.0.0.1:8000/wms/view-employee-action', function(json) {
+        //alert(json['success']);
+
+        $('#employee_view').html('<table class="content-table"><thead><tr><th>Sl.No</th><th>Name</th><th>Phone</th><th>Address</th><th>SSN</th><th>TIN</th><th>Type</th><th>&nbsp;&nbsp;&nbsp;&nbsp;Edit</th><th>&nbsp;&nbsp;&nbsp;Block</th></thead></tr>');
+        for (var i = 0; i < json['name'].length; ++i) {
+          //  alert(json['name'][i]);
+
+          $('#employee_view').append('<tbody><tr><td>' + (i+1) + '</td><td>' + json['name'][i] + '</td><td>' + json['phone'][i] + '</td><td>' + json['address'][i] + '</td><td>' + json['ssn'][i] + '</td><td>' + json['tin'][i] + '</td><td>' + json['type'][i] + '</td><td><a href="edit-employee-action?employee_id=' + json['id'][i] + '" class="edit" id="edit">EDIT</a></td><td><a href="block-employee-action?employee_id=' + json['id'][i] + '" class="delete" id="delete">Block</a></td></td></tr></tbody>')
+        }
+      });
+      var val = $('#success').val();
+      if(val == "True") {
+        alert('Profile updated successfully!!!')
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <input type="hidden" id="success" value="{{ success }}">
+
+    <table id="employee_view" class="content-table">
+      <!-- <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+         <th>Address</th>
+         <th>Password</th>
+       </tr> -->
+    </table>
+    <!-- Footer -->
+    {% include "html/footer.html" %}
+    <!-- End of footer -->
+</body>

@@ -1,0 +1,95 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#logout').click(function() {
+        window.location.href = 'http://127.0.0.1:8000/wms/supervisor-warehouse-login';
+      });
+
+    });
+  </script>
+</head>
+
+<body id="bg" style="background-image: url('{% static 'image/image1.png' %}');">
+  <!--start of header-->
+  <div class="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <img class="logo-image" id="" src="{% static 'image/logo-header1.png' %}">
+        <div class="logo"><a href="supervisor-home">&nbspWMS</a></div>
+        <ul class="links">
+          <li><a href="supervisor-home">Home</a></li>
+          <li>
+            <a href="#" class="desktop-link">Product</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Product</label>
+            <ul>
+              <li><a href="">Product</a>
+                <ul>
+                  <li><a href="supervisor-add-product">&nbsp;&nbsp;&nbsp; Add &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <li><a href="supervisor-view-product">&nbsp;&nbsp;&nbsp; View &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                  <!-- <li><a href="supervisor-edit-product">&nbsp;&nbsp;&nbsp; Edit &nbsp;&nbsp;&nbsp;&nbsp;</a></li> -->
+                </ul>
+              </li>
+              <li><a href="">Box</a>
+                <ul>
+                  <li><a href="supervisor-add-box">Add Box</a></li>
+                  <li><a href="supervisor-view-box">View Box</a></li>
+                  <li><a href="">Edit Box</a></li>
+                  <li><a href="supervisor-free-space">Free space</a></li>
+                </ul>
+              </li>
+              <li><a href="supervisor-box-transit">Box transit</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Employee</a>
+            <ul>
+              <li><a href="supervisor-add-employee-attendence">Attendence</a></li>
+              <li><a href="supervisor-view-employee-attendence">View attendence</a></li>
+              <li><a href="supervisor-view-employee">Details</a></li>
+            </ul>
+
+          </li>
+          <li><a href="#">Report</a>
+            <ul>
+              <li><a href="supervisor-view-rack-report">View Rack</a></li>
+            </ul>
+
+          </li>
+
+        </ul>
+      </div>
+      <a href="supervisor-warehouse-logout-action"><img class="logo" title="logout" src="{% static 'image/logout.png' %}" alt=""></a>
+    </nav>
+  </div>
+  <!--End of header-->
+
+  <div class="image">
+    <!-- <img class="wall" src="{% static 'image/wall2.png' %}" alt=""> -->
+  </div>
+  <!-- <div class="center">
+        <div class="header">
+           Login
+        </div>
+        <form>
+           <input type="text" placeholder="Email or Username">
+           <input id="pswrd" type="password" placeholder="Password">
+           <input type="submit" value="Sign in">
+           <a href="#">Forgot Password?</a>
+        </form>
+     </div> -->
+  <!-- Footer -->
+  <footer class="sticky-footer">
+    <pre> Copyright © 2021, All Right Reserved Warehouse Management System </pre>
+    <strong>&nbspHome</strong>
+  </footer>
+
+  <!-- End of footer -->
+</body>

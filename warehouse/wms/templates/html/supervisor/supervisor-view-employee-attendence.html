@@ -1,0 +1,91 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <!-- <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/supervisor-view-product-action', function(json) {
+        //alert(json['success']);
+        // $('#view_name').html('<span class="span-success-message">Welcome ' + json['supervisor'] +'</span>')
+        $('#product_view').html('<table class="content-table"><thead><tr><th>Sl.No</th><th>Name</th><th>Brand</th><th>Model</th><th>Quantity</th><th>Weight</th><th>Length</th><th>Width</th><th>Height</th><th>&nbsp&nbsp&nbsp&nbsp&nbspRemove</th><th>&nbsp&nbsp&nbsp&nbsp&nbspEdit</th></thead></tr>');
+        for (var i = 0; i < json['name'].length; ++i) {
+          //  alert(json['name'][i]);
+
+          $('#product_view').append('<tbody><tr><td>' + (i+1) + '</td><td>' + json['name'][i] + '</td><td>' + json['brand'][i] + '</td><td>' + json['model'][i] + '</td><td>' + json['quantity'][i] + '</td><td>' + json['weight'][i] + '</td><td>' + json['length'][i] + '</td><td>' + json['width'][i] + '</td><td>' + json['height'][i] + '</td><td><a href="supervisor-delete-product?id=' + json['id'][i] + '" class="delete" id="remove"">Remove</a></td><td><a href="supervisor-edit-product-action?product_id=' + json['id'][i] + '" class="edit" id="edit">EDIT</a></td></tr></tbody>')
+        }
+        $('#remove').on('click',function() {
+          alert('Product deletion success');
+        });
+
+      });
+
+    });
+  </script> -->
+</head>
+
+<body>
+
+  <!--start of header-->
+  {% include "html/supervisor/supervisor-header.html" %}
+  <!--End of header-->
+  <div class="span-align">
+    <div class="center">
+      <div class="header">
+        Search Employee
+      </div>
+      <form method="get" action="">
+
+        <span  class="span-label-message">Employee name</span><input type="text" name="name" id="name" placeholder="name">
+        <span  class="span-label-message">From</span><input type="date" name="" value=""placeholder="time-in">
+      <span  class="span-label-message">To</span><input type="date" name="" value=""placeholder="time-out">
+        <input type="submit" id="submit" value="Search">
+      </form>
+    </div>
+
+
+<!--
+  <div class="select">
+<input type="text" name="" value="" class="" placeholder="Enter employee name">
+<input type="month" name="" value="">
+<input type="month" name="" value="">
+<button type="button" name="button">Search</button>
+
+</div> -->
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Sl.No</th>
+        <th>Employee Name</th>
+        <th>SSN</th>
+        <th>Employee Type</th>
+        <th>Total Attendence</th>
+        <th>Total Working</th>
+      </tr>
+    </thead>
+
+
+    <tr>
+      <td>1</td>
+      <td>John</td>
+      <td>23456</td>
+      <td>Permanent</td>
+      <td>30</td>
+      <td>240</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Samual</td>
+      <td>43521</td>
+      <td>Temporary</td>
+      <td>22</td>
+      <td>120</td>
+    </tr>
+  </table>
+  </div>
+  <!-- <a href="" class="delete">Remove</a> -->
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

@@ -1,0 +1,73 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('http://127.0.0.1:8000/wms/view-building', function(json) {
+        for (var i = 0; i < json['name'].length; i++) {
+          $('#select_building').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+        }
+        //alert(json['success']);
+      });
+      $('#select_building').on('change', function() {
+        var val = $('#select_building').val();
+        //alert(val);
+        $.getJSON('http://127.0.0.1:8000/wms/view-rack-action?id=' + val, function(json) {
+          //$('#rack-view').html('<div class="selection"><select id="select_rack"><option value="">Select rack</option></select></div>')
+          //alert("hello")
+          $('#select_rack').html('<option value="">Select rack</option>')
+          for (var i = 0; i < json['rack_id'].length; i++) {
+            //  alert(json['name'][i])
+            $('#select_rack').append('<option value=' + json['rack_id'][i] + '>' + json['name'][i] + '</option>')
+          }
+
+        });
+      });
+      $('#select_rack').on('change', function() {
+        var val = $('#select_rack').val();
+        //alert(val);
+        $.getJSON('http://127.0.0.1:8000/wms/view-bin-action?id=' + val, function(json) {
+          //alert("hello")
+          $('#rack_view').html('<table class="content-table"><thead><tr><th>Sl.No</th><th>Weight</th><th>Width</th><th>Height</th><th>Length</th><th>&nbsp&nbsp&nbsp&nbsp&nbspEdit</th></thead></tr>');
+          for (var i = 0; i < json['rack_id'].length; ++i) {
+            //  alert(json['name'][i]);
+            $('#rack_view').append('<tbody><tr><td>' + (i + 1) + '</td><td>' + json['weight'][i] + '</td><td>' + json['width'][i] + '</td><td>' + json['height'][i] +
+              '</td><td>' + json['length'][i] + '</td><td><a href="edit-bin-action?bin_id=' + json['id'][i] + '" class="edit" id="edit">EDIT</a></td></tr></tbody>')
+          }
+        });
+        });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+<span class="arrow-highlight">{{ success }}</span>
+  <div class="selection">
+    <select id="select_building">
+      <option value="">Select building</option>
+    </select>
+  </div>
+  <div class="selection">
+    <select id="select_rack">
+      <option value="">Select rack</option>
+    </select>
+  </div>
+  <table id="rack_view" class="content-table">
+    <!-- <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+         <th>Address</th>
+         <th>Password</th>
+       </tr> -->
+  </table>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

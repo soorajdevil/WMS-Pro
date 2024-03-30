@@ -1,0 +1,81 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#search').on('click', function() {
+        var product_name = $('#product_name').val();
+        //alert(product_name);
+
+        $.getJSON('http://127.0.0.1:8000/wms/manager-view-product?name=' + product_name, function(json) {
+          //alert(json['name']);
+          $('#view-product').html('<table class="content-table" id="viewport"><thead><tr><th>Sl.No</th><th>Name</th><th>Brand</th><th>Builidng</th><th>Rack</th><th>Bin</th><th>Quantity</th></tr></thead>')
+          for (var i = 0; i < json['name'].length; i++) {
+            // alert(json['name'][i]);
+            $('#view-product').append('<tr><td> '+ (i+1) +' </td> <td> '+ json['name'][i] +' </td> <td>' + json['brand'][i] + '</td> <td> Building 1 </td> <td> Rack 2 </td> <td> Bin 4 </td> <td >' + json['quantity'][i] + '</td> </tr>')
+          }
+
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div class="select">
+    <input type="text" name="" value="" id="product_name" placeholder="Enter Product Name">
+    <button type="button" id="search" name="button">Search</button>
+    <a href="#">View More</a>
+  </div>
+  <span class="arrow-highlight">{{ success }}</span>
+  <div >
+
+
+    <table class="content-table" id="view-product">
+      <!-- <thead>
+      <tr>
+        <th>Sl.No</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Builidng</th>
+        <th>Rack</th>
+        <th>Bin</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+
+    <tr>
+      <td>1</td>
+      <td>Steel</td>
+      <td>RX</td>
+      <td>Building 1</td>
+      <td>Rack 2</td>
+      <td>Bin 4</td>
+      <td>3000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Steel</td>
+      <td>SRC</td>
+      <td>Building 1</td>
+      <td>Rack 1</td>
+      <td>Bin 1</td>
+      <td>250</td>
+    </tr> -->
+    </table>
+
+  </div>
+
+  <!-- <a href="" class="delete">Remove</a> -->
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

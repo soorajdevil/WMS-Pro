@@ -1,0 +1,61 @@
+{% load static %}
+
+<head>
+  <!-- <link rel="stylesheet" href="add-building.css"> -->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+
+      $.getJSON('http://127.0.0.1:8000/wms/view-building', function(json) {
+        for (var i = 0; i < json['name'].length; i++) {
+          $('#select_building').append('<option value=' + json['id'][i] + '> ' + json['name'][i] + '</option>')
+        }
+        //alert(json['success']);
+      });
+      $('#select_building').on('change', function() {
+        var val = $('#select_building').val();
+        //alert(val);
+          $('#view_rack').html(
+            '<div id="view_rack"><div class="center"><div class="header">ADD Rack</div><form method="post" action="add-rack-action">{% csrf_token %}<input type="hidden" id="id" name="id" value="'+  val +'"><input type="text" name="rack_name" id="rack_name" placeholder="Rack name"><input type="number" name="weight" id="weight" placeholder="weight capacity"><input type="number"name="nof_bin" id="nof_bin" placeholder="Number of bins"><input type="number" name="width" id="width" placeholder="width"><input type="number" name="height" id="height" placeholder="Height"><input type="number" name="length" id="length" placeholder="Length"><input type="submit" id="submit" value="Submit"></form></div></div>'
+          )
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--start of header-->
+  {% include "html/header.html" %}
+  <!--End of header-->
+  <div class="selection">
+    <select id="select_building">
+      <option value="">Select building</option>
+    </select>
+  </div>
+  <div id="view_rack">
+    <div>
+    <span>{{ success }}</span>
+    </div>
+    <!-- <div class="center">
+      <div class="header">
+         ADD Rack
+      </div>
+      <form method="get" action="add-rack-action">
+        <span>{{ success }}</span>
+        <span>{{ Error }}</span>
+         <input type="text" name="rack_name" id="rack_name" placeholder="Rack name">
+         <input type="number" name="weight" id="weight" placeholder="weight capacity">
+         <input type="number"name="nof_bin" id="nof_bin" placeholder="Number of bins">
+         <input type="number" name="width" id="width" placeholder="width">
+         <input type="number" name="height" id="height" placeholder="Height">
+         <input type="number" name="length" id="length" placeholder="Length">
+         <input type="submit" id="submit" value="Submit">
+
+      </form>
+   </div> -->
+  </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+</body>

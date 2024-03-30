@@ -1,0 +1,38 @@
+{% load static %}
+<head>
+    <!-- <link rel="stylesheet" href="add-building.css"> -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+      <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+      <script>
+        $(document).ready(function() {
+            $.getJSON('http://127.0.0.1:8000/wms/', function(json) {
+              //alert(json['success']);
+            });
+        });
+      </script>
+</head>
+<body>
+    <!--start of header-->
+    {% include "html/header.html" %}
+     <!--End of header-->
+     <div>
+     <div class="center">
+      <div class="header">
+         ADD Supervisor
+      </div>
+      <form method="get" action="add-supervisor-action">
+        <span>{{ success }}</span>
+         <input type="text" name="name" id="name" placeholder="Name" required>
+         <input type="email" name="email" id="email" placeholder="Email" required>
+         <input type="number" name="phone" id="phone" placeholder="Phone" required>
+         <input type="text" name="address" id="address" placeholder="Address" required>
+         <input type="number" name="ssn" id="ssn" placeholder="SSN" required>
+         <input type="submit" id="submit" value="Submit">
+
+      </form>
+   </div>
+  </div>
+  <!-- Footer -->
+  {% include "html/footer.html" %}
+  <!-- End of footer -->
+    </body>
